@@ -9,33 +9,43 @@ import java.util.Set;
 public class Esercizio01 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		try {
+			System.out.println("Inserire numero pari al numero di nomi che si vogliono salvare");
+			int lunghezza = Integer.parseInt(input.nextLine());
+			Set<String> nomiArray = new HashSet<>();
 
-		System.out.println("Inserire numero pari al numero di nomi che si vogliono salvare");
-		int lunghezza = Integer.parseInt(input.nextLine());
-		Set<String> nomiArray = new HashSet<>();
+			controlloNomi(nomiArray, input, lunghezza);
+			// stampaNomiDuplicati(nomiArray);
+			System.out.println("ciao");
+		} catch (NumberFormatException e) {
+			System.out.println("Inserire numero intero");
+		} finally {
+			input.close();
+		}
 
-		controlloNomi(nomiArray, input, lunghezza);
-		// stampaNomiDuplicati(nomiArray);
-
-		input.close();
 	}
 
 	public static void controlloNomi(Set<String> array, Scanner input, int lunghezza) {
 		int i = 0;
 		List<String> nomiDuplicati = new ArrayList<String>();
 		String nome;
-		do {
-			System.out.println("Inserire nuovo nome");
-			nome = input.nextLine();
+		try {
+			do {
+				System.out.println("Inserire nuovo nome");
+				nome = input.nextLine();
 
-			for (String nomeNuovo : array) {
-				if (nomeNuovo.equals(nome)) {
-					nomiDuplicati.add(nome);
+				for (String nomeNuovo : array) {
+					if (nomeNuovo.equals(nome)) {
+						nomiDuplicati.add(nome);
+					}
 				}
-			}
-			array.add(nome);
-			i++;
-		} while (i != lunghezza);
+				array.add(nome);
+				i++;
+			} while (i != lunghezza);
+		} catch (NumberFormatException e) {
+			e.getStackTrace();
+		}
+
 		System.out.println("\n");
 		System.out.println("********** Lista di nomi distinti **********");
 		for (String nomeNonDuplicato : array) {
