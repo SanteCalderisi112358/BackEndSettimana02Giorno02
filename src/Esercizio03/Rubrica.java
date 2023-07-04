@@ -1,10 +1,13 @@
 package Esercizio03;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Rubrica {
-	private Map<String, String> rubrica = new HashMap<>();
+	private Map<String, String> rubrica;
+
+	public Rubrica(Map<String, String> _rubrica) {
+		this.rubrica = _rubrica;
+	}
 
 
 
